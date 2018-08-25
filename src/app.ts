@@ -1,27 +1,31 @@
-// Function
-function myFunction() {
-    console.log('Function:::',this);
-}
-myFunction();
-// myFunction is in global scope, so its this keyword will belong to the global scope
-
 // Object literal
 const myObj = {
     myMethod() {
         console.log('Object:::',this);
     },
 };
-myObj.myMethod();
-// myMethod belong to myObj scope, so this keyword belongs to myObj(local) scope
+// myObj.myMethod();
 
-// Classes
-class MyClass {
-    myMethod() {
-        console.log('class:::', this);
-    }
+// Function
+function myFunction(...text: string[]) {
+    console.log('Function:::',this, text);
 }
+myFunction('abc', 'def');
+myFunction.call(myObj, 'abc', 'def');
+myFunction.apply(myObj, ['abc', 'def']);
 
-const myInstance = new MyClass();
-myInstance.myMethod();
+const bindFunction = myFunction.bind(myObj);
+bindFunction('abc', 'def');
+bindFunction('123', '456');
 
-// this keyword changes based on how we invoked the function, 
+// myFunction.call([]);
+// call method is used to invoke a method belonging to another object on a different object
+
+// The Difference Between call() and apply()
+// The call() method takes arguments separately.
+// The apply() method takes arguments as an array.
+
+// The bind() method creates a new function that when called has its 'this' keyword set to
+// the provided value, with a given sequence of arguments.
+
+// in js all functions are object methods
