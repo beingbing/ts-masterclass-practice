@@ -1,31 +1,20 @@
-// Object literal
-const myObj = {
+class MyClass {
     myMethod() {
-        console.log('Object:::',this);
-    },
-};
-// myObj.myMethod();
-
-// Function
-function myFunction(...text: string[]) {
-    console.log('Function:::',this, text);
+        // const foo = 123;
+        console.log('1', this);
+        // setTimeout(function() {
+        //     console.log(this); // setTimeout is called global, hence the result.
+        //     // console.log(foo); // it worked because foo is available in scope chain
+        // }, 0);
+        setTimeout(() => {
+            console.log('2', this);
+        }, 0); // arrow function doesn't creates a new scope, hence it uses its parents scope
+    }
 }
-myFunction('abc', 'def');
-myFunction.call(myObj, 'abc', 'def');
-myFunction.apply(myObj, ['abc', 'def']);
+// although setTimeout creates a brand new scope, if something is not available in
+// its scope then it goes to look it in its parent scope.
+// what we are using is called lexical scope, so the variable 'foo' that we are
+// using is available in the lexical scope.
 
-const bindFunction = myFunction.bind(myObj);
-bindFunction('abc', 'def');
-bindFunction('123', '456');
-
-// myFunction.call([]);
-// call method is used to invoke a method belonging to another object on a different object
-
-// The Difference Between call() and apply()
-// The call() method takes arguments separately.
-// The apply() method takes arguments as an array.
-
-// The bind() method creates a new function that when called has its 'this' keyword set to
-// the provided value, with a given sequence of arguments.
-
-// in js all functions are object methods
+const myInstance = new MyClass();
+myInstance.myMethod();
