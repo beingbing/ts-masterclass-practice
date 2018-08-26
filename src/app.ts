@@ -1,26 +1,32 @@
-// let dictionary: { [key: string]: any } = {};
+// function foo(bar: string | number) {
+//     if (typeof bar === 'string') {
+//         return bar.toUpperCase();
+//     }
+//     return bar.toFixed(2);
+// }
 
-let dictionary: Record<string, TrackState> = {};
-
-interface TrackState {
-    current: string;
-    next: string;
+class Song {
+    constructor(public title: string, public duration: string | number) {}
 }
 
-// const item: TrackState = {
-//     current: 'ngdf5t54',
-//     next: 'h54tngd'
-// };
+function getSongDuration(item: Song) {
+    if (typeof item.duration === 'string') {
+        return item.duration;
+    }
+    const { duration } = item;
+    const minutes = Math.floor(duration / 60000);
+    const seconds = (duration / 1000) % 60;
+    return `${minutes}:${seconds}`;
+}
 
-// const item: Record<'current' | 'next', string> = {
-//     current: 'ngdf5t54',
-//     next: 'h54tngd'
-// };
+const songDurationFromString = getSongDuration(
+    new Song('Wonderful Wonderful', '05:30')
+);
 
-const item: Record<keyof TrackState, string> = {
-    current: 'ngdf5t54',
-    next: 'h54tngd'
-};
+console.log(songDurationFromString);
 
-// numbers are coerced in strings
-dictionary[0] = item;
+const songDurationFromMS = getSongDuration(
+    new Song('Wonderful Wonderful', 330000)
+);
+
+console.log(songDurationFromMS);
