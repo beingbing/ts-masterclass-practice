@@ -3,27 +3,22 @@ interface Person {
     age: number;
 }
 
-// interface ReadonlyPerson {
-//     readonly name: string;
-//     readonly age: number;
+// interface PartialPerson {
+//     name?: string;
+//     age?: number;
 // }
+
+// type MyPartial<T> = {
+//     [P in keyof T]?: T[P];
+// }
+
+function updatePerson(person: Person, prop: Partial<Person>) {
+    return {...person, ...prop};
+}
 
 const person: Person = {
     name: 'samar',
     age: 23
 };
 
-// function freezePerson(person: Person): ReadonlyPerson {
-//     return Object.freeze(person);
-// }
-
-function freeze<T>(obj: T): Readonly<T> {
-    return Object.freeze(obj);
-}
-
-const newPerson = freeze(person);
-
-// exercise
-type MyReadonly<T> = {
-    readonly [P in keyof T]: T[P]
-};
+updatePerson(person, {name: 'abc'});
