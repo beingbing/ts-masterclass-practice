@@ -1,32 +1,29 @@
-// class is more of a blueprint that object shares (same info, properties and methods)
-// Interface is a group of related properties and methods that describe an object
-//
-// but neither provides the implementations nor initialization for objects but 
-// interface doesn't provide any implementation details nor it allows to initialize them
-
-// the use case for both depends on whether we just want to use them for type checking
-// or we want to provide implementation details
-
-// interface Artist {
-//     name: string;
-// }
-
-// new Artist('Samar'); // we can't do that with interface
-
-class ArtistCreator /*implements Artist*/ {
-    constructor(public name: string) {}
+class Pizza {
+    constructor(private name: string, private price: number) {}
 }
 
-// function artistFactory({ name }: Artist) {
-//     return { id: 101, name }
-// }
+class List<T> {
+    private list: T[];
 
-// function artistFactory({ name }: Artist) {
-//     return new ArtistCreator(name);
-// }
+    addItem(item: T): void {
+        this.list.push(item);
+    }
 
-function artistFactory({ name }: ArtistCreator) {
-    return new ArtistCreator(name);
+    getList(): T[] {
+        return this.list;
+    }
 }
 
-artistFactory({ name: 'Samar'});
+const list = new List<Pizza>();
+
+list.addItem(new Pizza('pepperoni', 15));
+
+const pizza = list.getList();
+
+class Coupon {
+    constructor(private name: string) {}
+}
+
+const anotherList = new List<Coupon>();
+
+anotherList.addItem(new Coupon('PIZZA23'));
