@@ -1,17 +1,22 @@
+// const exists = 'localstorage' in window; // true
+
 class Song {
+    kind: 'song';
     constructor(public title: string, public duration: number) {}
 }
 
 class Playlist {
+    kind: 'playlist';
     constructor(public name: string, public song: Song[]) {}
 }
 
 function isSong(item: any): item is Song { // it can be used only on boolean.
-    return item instanceof Song;           // it's just giving type info with returned bool
+    return 'title' in item;           // it's just giving type info with returned bool
 }
 
 function getItemName(item: Song | Playlist) {
-    if (isSong(item)) {
+    // if (isSong(item)) {
+    if (item.kind === 'song') {
         return item.title;
     }
     return item.name;
