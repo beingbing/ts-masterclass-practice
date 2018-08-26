@@ -1,15 +1,3 @@
-// class Foo {
-//     bar() {}
-// }
-
-// function Foo2() {}
-// Foo2.prototype.bar = function() {};
-
-// const bar = new Foo();
-
-// console.log(bar instanceof Foo);
-// console.log(Object.getPrototypeOf(bar) === Foo.prototype); // if bar is an instance of foo, true
-
 class Song {
     constructor(public title: string, public duration: number) {}
 }
@@ -18,12 +6,12 @@ class Playlist {
     constructor(public name: string, public song: Song[]) {}
 }
 
+function isSong(item: any): item is Song { // it can be used only on boolean.
+    return item instanceof Song;           // it's just giving type info with returned bool
+}
+
 function getItemName(item: Song | Playlist) {
-    // if ((item as Song).title) {
-    //     return (item as Song).title;
-    // }
-    // return (item as Playlist).name;
-    if (item instanceof Song) {
+    if (isSong(item)) {
         return item.title;
     }
     return item.name;
