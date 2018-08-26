@@ -1,32 +1,38 @@
-// function foo(bar: string | number) {
-//     if (typeof bar === 'string') {
-//         return bar.toUpperCase();
-//     }
-//     return bar.toFixed(2);
+// class Foo {
+//     bar() {}
 // }
 
+// function Foo2() {}
+// Foo2.prototype.bar = function() {};
+
+// const bar = new Foo();
+
+// console.log(bar instanceof Foo);
+// console.log(Object.getPrototypeOf(bar) === Foo.prototype); // if bar is an instance of foo, true
+
 class Song {
-    constructor(public title: string, public duration: string | number) {}
+    constructor(public title: string, public duration: number) {}
 }
 
-function getSongDuration(item: Song) {
-    if (typeof item.duration === 'string') {
-        return item.duration;
+class Playlist {
+    constructor(public name: string, public song: Song[]) {}
+}
+
+function getItemName(item: Song | Playlist) {
+    // if ((item as Song).title) {
+    //     return (item as Song).title;
+    // }
+    // return (item as Playlist).name;
+    if (item instanceof Song) {
+        return item.title;
     }
-    const { duration } = item;
-    const minutes = Math.floor(duration / 60000);
-    const seconds = (duration / 1000) % 60;
-    return `${minutes}:${seconds}`;
+    return item.name;
 }
 
-const songDurationFromString = getSongDuration(
-    new Song('Wonderful Wonderful', '05:30')
+const songName = getItemName(new Song('Wonderful Wonderful', 300000));
+console.log('Song name: ', songName);
+
+const playlistName = getItemName(
+    new Playlist('The Best song Ever', [new Song('Simple man', 300000)])
 );
-
-console.log(songDurationFromString);
-
-const songDurationFromMS = getSongDuration(
-    new Song('Wonderful Wonderful', 330000)
-);
-
-console.log(songDurationFromMS);
+console.log('playlist name: ', playlistName);
