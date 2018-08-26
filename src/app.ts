@@ -1,31 +1,37 @@
-// const exists = 'localstorage' in window; // true
-
-class Song {
-    kind: 'song';
-    constructor(public title: string, public duration: number) {}
+interface Order {
+    id: string;
+    amount: number;
+    currency: string;
 }
 
-class Playlist {
-    kind: 'playlist';
-    constructor(public name: string, public song: Song[]) {}
+interface Stripe {
+    card: string;
+    cvc: number;
 }
 
-function isSong(item: any): item is Song { // it can be used only on boolean.
-    return 'title' in item;           // it's just giving type info with returned bool
+interface PayPal {
+    email: string;
 }
 
-function getItemName(item: Song | Playlist) {
-    // if (isSong(item)) {
-    if (item.kind === 'song') {
-        return item.title;
-    }
-    return item.name;
+type CheckoutCard = Order & Stripe;
+type CheckoutPayPal = Order & PayPal;
+type CheckoutABC = Order & { name: string };
+
+const order: Order = {
+    id: 'fd43fg',
+    amount: 435,
+    currency: 'USD'
 }
 
-const songName = getItemName(new Song('Wonderful Wonderful', 300000));
-console.log('Song name: ', songName);
+const orderCard: CheckoutCard = {
+    ...order,
+    card: '1000 2000 3000 4000',
+    cvc: 435
+}
 
-const playlistName = getItemName(
-    new Playlist('The Best song Ever', [new Song('Simple man', 300000)])
-);
-console.log('playlist name: ', playlistName);
+const orderPayPal: CheckoutPayPal = {
+    ...order,
+    email: 'abd@sdf.com'
+};
+
+const assigned = Object.assign({}, order, orderCard);
