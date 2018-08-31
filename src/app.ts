@@ -1,11 +1,7 @@
-import * as _ from 'lodash';
+export class Foo {
+    constructor(public name: string) {}
 
-_.chunk([1,2,3,4], 2); // [[1,2], [3,4]]
-
-_.mixin({
-    log(item: string) {
-        console.log(':::', item);
+    bar(age: number) {
+        //
     }
-})
-
-_.log('hello!!');
+}
