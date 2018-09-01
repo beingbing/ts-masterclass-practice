@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "target": "es5",
-    // "module": "commonjs", // amd - asynchronous module defination, system
-    "module": "amd",
+    "module": "commonjs",
     "lib": [
       "dom",
       "es6"
     ],
-    // "outDir": "dist"
-    "outFile": "dist/bundle.js",
-    "noEmitOnError": true
+    "outDir": "dist",
+    "sourceMap": true, // will generate the source file
+    "inlineSources": true, // will show the sources content too...
+    "mapRoot": "/mappings/" // will give a mapping route
+    // inlineSourceMap => true, will generate a base64 encode of the data with mapping route
+    // it's a substitue for both inlineSources and mapRoot
   }
 }
