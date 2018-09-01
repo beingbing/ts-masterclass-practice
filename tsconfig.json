@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    // "module": "commonjs", // amd - asynchronous module defination, system
+    "module": "amd",
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    // "outDir": "dist"
+    "outFile": "dist/bundle.js",
+    "noEmitOnError": true
+  }
+}
