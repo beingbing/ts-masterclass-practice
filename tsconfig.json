@@ -1,7 +1,14 @@
 {
+  "include": [  // priority - low
+    "src/*.ts" // "src/**/*.ts" if you want to recursively go down to each inside folder
+  ],
+  "files": [ // priority - high
+    "src/app.ts"
+  ],
+  "exclude": [  // priority - mid
+    "src/app.spec.ts"
+  ],
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "./@types",
     "target": "es5",
     "module": "commonjs",
     "lib": [
@@ -9,9 +16,5 @@
       "es6"
     ],
     "outDir": "dist",
-    "typeRoots": [
-      "src/@types",
-      "node_modules/@types"
-    ]
   }
 }
