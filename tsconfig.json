@@ -7,10 +7,9 @@
       "es6"
     ],
     "outDir": "dist",
-    "traceResolution": true,
-    "diagnostics": true,
-    "listFiles": true,
-    "listEmittedFiles": true,
-    "pretty": true
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true
   }
 }
