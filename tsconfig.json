@@ -7,9 +7,7 @@
       "es6"
     ],
     "outDir": "dist",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true
+    "noEmitHelpers": true,
+    "importHelpers": true
   }
 }

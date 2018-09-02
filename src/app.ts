@@ -1,1 +1,1 @@
-const names = 123;
+export class App {}
