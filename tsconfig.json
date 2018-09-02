@@ -3,8 +3,8 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
-      "dom",
-      "es6"
+      "dom","dom.iterable",
+      "es6", "scripthost"
     ],
     "outDir": "dist",
     "experimentalDecorators": true, // for angular
